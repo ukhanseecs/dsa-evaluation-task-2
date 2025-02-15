@@ -23,6 +23,23 @@ To get started with this project, follow these steps:
 
 The program will execute all test cases and display the results.
 
+## Project Structure
+
+```
+dsa-evaluation-task-2/
+├── main.go              # Entry point of the program
+├── wave_pattern.go      # Contains wave pattern implementation
+├── wave_pattern_test.go # Test cases for wave pattern
+└── README.md           # Project documentation
+```
+
+### File Descriptions
+
+- **main.go**: Contains the main function that demonstrates the wave pattern algorithm with example cases
+- **wave_pattern.go**: Implements the `waveRearrange` function and related helper functions
+- **wave_pattern_test.go**: Contains unit tests to verify the correctness of the implementation
+
+
 ## Algorithm Explanation
 
 The `waveRearrange` function organizes an array into a wave-like pattern by processing it in blocks of size (2x + 1). Here's how it works:
