@@ -7,7 +7,7 @@ To get started with this project, follow these steps:
 
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/dsa-evaluation-task-2.git
+git clone https://github.com/ukhanseecs/dsa-evaluation-task-2.git
 cd dsa-evaluation-task-2
 ```
 
