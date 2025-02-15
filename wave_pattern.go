@@ -1,10 +1,12 @@
 package main
 
+
+
 // Function to rearrange array in wave pattern
 func waveRearrange(arr []int, x int) {
 	blockSize := 2*x + 1
 	n := len(arr)
-	
+
 	// Process each block of size (2x+1)
 	for i := 0; i < n; i += blockSize {
 		end := i + blockSize
@@ -22,16 +24,10 @@ func processBlock(block []int, x int) {
 		return
 	}
 
-	// Ensure x is not larger than the block size
-	effectiveX := x
-	if effectiveX >= size {
-		effectiveX = size - 1
-	}
-
-	// Simple selection sort to sort left part (0 to x-1)
-	for i := 0; i < effectiveX; i++ {
+	// Sort left part (0 to x) in ascending order
+	for i := 0; i < x; i++ {
 		minIndex := i
-		for j := i + 1; j < effectiveX; j++ {
+		for j := i + 1; j <= x && j < size; j++ {
 			if block[j] < block[minIndex] {
 				minIndex = j
 			}
@@ -40,24 +36,22 @@ func processBlock(block []int, x int) {
 	}
 
 	// Find max element in the block and place it at index x
-	if effectiveX < size {
-		maxIndex := effectiveX
-		for i := effectiveX; i < size; i++ {
-			if block[i] > block[maxIndex] {
-				maxIndex = i
-			}
+	maxIndex := x
+	for i := x; i < size; i++ {
+		if block[i] > block[maxIndex] {
+			maxIndex = i
 		}
-		block[effectiveX], block[maxIndex] = block[maxIndex], block[effectiveX]
+	}
+	block[x], block[maxIndex] = block[maxIndex], block[x]
 
-		// Simple selection sort to sort right part (x+1 to size-1) in decreasing order
-		for i := effectiveX + 1; i < size; i++ {
-			maxIndex := i
-			for j := i + 1; j < size; j++ {
-				if block[j] > block[maxIndex] {
-					maxIndex = j
-				}
+	// Sort right part (x+1 to size-1) in descending order
+	for i := x + 1; i < size; i++ {
+		maxIndex := i
+		for j := i + 1; j < size; j++ {
+			if block[j] > block[maxIndex] {
+				maxIndex = j
 			}
-			block[i], block[maxIndex] = block[maxIndex], block[i]
 		}
+		block[i], block[maxIndex] = block[maxIndex], block[i]
 	}
 }
