@@ -1,56 +1,63 @@
 package main
 
-import (
-	"fmt"
-)
-
-// Function to swap two elements
-func swap(arr []int, i, j int) {
-	arr[i], arr[j] = arr[j], arr[i]
-}
-
-// Function to sort an array using Bubble Sort (since Go does not allow inbuilt functions)
-func bubbleSort(arr []int, start, end bool) {
-	for i := 0; i < len(arr)-1; i++ {
-		for j := 0; j < len(arr)-i-1; j++ {
-			if (start && arr[j] > arr[j+1]) || (!start && arr[j] < arr[j+1]) {
-				swap(arr, j, j+1)
-			}
+// Function to rearrange array in wave pattern
+func waveRearrange(arr []int, x int) {
+	blockSize := 2*x + 1
+	n := len(arr)
+	
+	// Process each block of size (2x+1)
+	for i := 0; i < n; i += blockSize {
+		end := i + blockSize
+		if end > n {
+			end = n
 		}
+		processBlock(arr[i:end], x)
 	}
 }
 
-// Function to rearrange array into wave pattern
-func wavePattern(arr []int, x int) {
-	size := 2*x + 1
-	if len(arr) != size {
-		fmt.Println("Array length must be exactly 2x+1")
+// Process a single block of size (2x+1)
+func processBlock(block []int, x int) {
+	size := len(block)
+	if size <= 1 {
 		return
 	}
 
-	// Sort the block to easily identify the maximum element
-	bubbleSort(arr, true, true) // Sort entire block in increasing order
-	
-	// Extract the max element (last element) and put it at index x
-	maxIndex := size - 1
-	maxElement := arr[maxIndex]
-	
-	// Shift elements right from index x to size-1
-	for i := maxIndex; i > x; i-- {
-		arr[i] = arr[i-1]
+	// Ensure x is not larger than the block size
+	effectiveX := x
+	if effectiveX >= size {
+		effectiveX = size - 1
 	}
-	arr[x] = maxElement
 
-	// Sort left part in non-decreasing order
-	bubbleSort(arr[:x], true, true)
+	// Simple selection sort to sort left part (0 to x-1)
+	for i := 0; i < effectiveX; i++ {
+		minIndex := i
+		for j := i + 1; j < effectiveX; j++ {
+			if block[j] < block[minIndex] {
+				minIndex = j
+			}
+		}
+		block[i], block[minIndex] = block[minIndex], block[i]
+	}
 
-	// Sort right part in non-increasing order
-	bubbleSort(arr[x+1:], false, false)
-}
+	// Find max element in the block and place it at index x
+	if effectiveX < size {
+		maxIndex := effectiveX
+		for i := effectiveX; i < size; i++ {
+			if block[i] > block[maxIndex] {
+				maxIndex = i
+			}
+		}
+		block[effectiveX], block[maxIndex] = block[maxIndex], block[effectiveX]
 
-func main() {
-	arr := []int{3, 6, 5, 10, 7} // Example array with x = 3
-	x := 2
-	wavePattern(arr, x)
-	fmt.Println("Wave Pattern Array:", arr)
+		// Simple selection sort to sort right part (x+1 to size-1) in decreasing order
+		for i := effectiveX + 1; i < size; i++ {
+			maxIndex := i
+			for j := i + 1; j < size; j++ {
+				if block[j] > block[maxIndex] {
+					maxIndex = j
+				}
+			}
+			block[i], block[maxIndex] = block[maxIndex], block[i]
+		}
+	}
 }
