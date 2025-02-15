@@ -15,5 +15,9 @@ cd dsa-evaluation-task-2
 ```bash
 go run .
 ```
+or
+```bash
+go run main.go wave_pattern.go
+```
 
 The program will execute all test cases and display the results.
