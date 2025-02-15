@@ -1,5 +1,7 @@
-# dsa-evaluation-task-2
-this repository contains the solution code and explanation for dsa evaluation question # 2.
+
+# DSA Evaluation Task 2
+
+This repository contains the solution code and explanation for DSA evaluation question #2.
 
 ## Getting Started
 
@@ -20,4 +22,36 @@ or
 go run main.go wave_pattern.go
 ```
 
+## Test Results
 The program will execute all test cases and display the results.
+
+## Implementation Details
+
+### Problem Breakdown
+
+Given an array of integers and an integer x, we rearrange the array into a wave pattern where:
+- The array is divided into blocks of size 2x + 1
+- The element at index x must be the maximum in the block
+- Elements to the left of x must be in non-decreasing order
+- Elements to the right of x must be in non-increasing order
+
+### Solution Approach
+
+#### Block Partitioning
+- Process array in chunks of 2x + 1
+- Handle smaller end blocks separately
+
+#### Sorting Strategy
+- Sort left part (0 to x-1) in ascending order
+- Place maximum element at index x
+- Sort right part (x+1 to end) in descending order
+
+### Example Output
+```
+Original Array: [9, 1, 5, 3, 7, 2, 8]
+Rearranged Array: [1, 3, 9, 8, 7, 5, 2]
+```
+
+## License
+This project is open-source and free to use.
+
