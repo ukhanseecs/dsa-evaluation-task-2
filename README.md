@@ -22,7 +22,6 @@ or
 go run main.go wave_pattern.go
 ```
 
-## Test Results
 The program will execute all test cases and display the results.
 
 ## Implementation Details
@@ -48,7 +47,7 @@ Given an array of integers and an integer x, we rearrange the array into a wave 
 
 ### Example Output
 ```
-Original Array: [9, 1, 5, 3, 7, 2, 8]
+Original Array: [9, 1, 5, 3, 7, 2, 8], x: 1, Block Size: 3
 Rearranged Array: [1, 3, 9, 8, 7, 5, 2]
 ```
 
