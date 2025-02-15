@@ -1,4 +1,3 @@
-
 # DSA Evaluation Task 2
 
 This repository contains the solution code and explanation for DSA evaluation question #2.
@@ -8,49 +7,52 @@ This repository contains the solution code and explanation for DSA evaluation qu
 To get started with this project, follow these steps:
 
 1. Clone the repository
-```bash
-git clone https://github.com/ukhanseecs/dsa-evaluation-task-2.git
-cd dsa-evaluation-task-2
-```
+    ```bash
+    git clone https://github.com/ukhanseecs/dsa-evaluation-task-2.git
+    cd dsa-evaluation-task-2
+    ```
 
 2. Run the test cases
-```bash
-go run .
-```
-or
-```bash
-go run main.go wave_pattern.go
-```
+    ```bash
+    go run .
+    ```
+    or
+    ```bash
+    go run main.go wave_pattern.go
+    ```
 
 The program will execute all test cases and display the results.
 
-## Implementation Details
+## Algorithm Explanation
 
-### Problem Breakdown
+The `waveRearrange` function organizes an array into a wave-like pattern by processing it in blocks of size (2x + 1). Here's how it works:
 
-Given an array of integers and an integer x, we rearrange the array into a wave pattern where:
-- The array is divided into blocks of size 2x + 1
-- The element at index x must be the maximum in the block
-- Elements to the left of x must be in non-decreasing order
-- Elements to the right of x must be in non-increasing order
+### Dividing the Array into Blocks
+- The array is split into consecutive blocks, each containing (2x + 1) elements
+- If the remaining elements at the end are fewer than (2x + 1), they form a smaller block
 
-### Solution Approach
+### Sorting Each Block
+- Each block is sorted in ascending order
+- Sorting ensures a structured arrangement where the largest element moves to the end
 
-#### Block Partitioning
-- Process array in chunks of 2x + 1
-- Handle smaller end blocks separately
+### Swapping the Middle and Largest Elements
+- The largest element (which is at the last index after sorting) is swapped with the middle element of the block
+- This creates a peak-like effect where the middle of each block has the highest value, forming a wave pattern
 
-#### Sorting Strategy
-- Sort left part (0 to x-1) in ascending order
-- Place maximum element at index x
-- Sort right part (x+1 to end) in descending order
-
-### Example Output
-```
-Original Array: [9, 1, 5, 3, 7, 2, 8, 4, 6], x: 1, Block Size: 3
-Rearranged Array: [9 5 1 3 7 2 8 6 4]
+### Example
+```go
+arr := []int{10, 5, 6, 3, 2, 20, 100, 80}
+x := 1  // Block size = (2*1 + 1) = 3
 ```
 
-## License
-This project is open-source and free to use.
+#### Process:
+1. Blocks: `[10, 5, 6]`, `[3, 2, 20]`, `[100, 80]`
+2. After sorting: `[5, 6, 10]`, `[2, 3, 20]`, `[80, 100]`
+3. After swapping: `[5, 10, 6]`, `[2, 20, 3]`, `[80, 100]`
 
+#### Final Output:
+```go
+[5, 10, 6, 2, 20, 3, 80, 100]
+```
+
+This approach ensures that within each block, the middle value forms a peak, resulting in a wave-like pattern across the array.
