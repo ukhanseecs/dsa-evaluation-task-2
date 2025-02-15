@@ -1,4 +1,4 @@
-# DSA Evaluation Task 2
+# Wave Pattern : DSA Evaluation Task 2
 
 This repository contains the solution code and explanation for DSA evaluation question #2.
 
