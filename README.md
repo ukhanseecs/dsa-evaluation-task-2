@@ -41,18 +41,18 @@ The `waveRearrange` function organizes an array into a wave-like pattern by proc
 
 ### Example
 ```go
-arr := []int{10, 5, 6, 3, 2, 20, 100, 80}
+arr := []int{10, 5, 6, 3, 2, 20, 100, 80, 90}
 x := 1  // Block size = (2*1 + 1) = 3
 ```
 
 #### Process:
-1. Blocks: `[10, 5, 6]`, `[3, 2, 20]`, `[100, 80]`
-2. After sorting: `[5, 6, 10]`, `[2, 3, 20]`, `[80, 100]`
-3. After swapping: `[5, 10, 6]`, `[2, 20, 3]`, `[80, 100]`
+1. Blocks: `[10, 5, 6]`, `[3, 2, 20]`, `[100, 80, 90]`
+2. After sorting: `[5, 6, 10]`, `[2, 3, 20]`, `[80, 90, 100]`
+3. After swapping: `[5, 10, 6]`, `[2, 20, 3]`, `[80, 90, 100]`
 
 #### Final Output:
 ```go
-[5, 10, 6, 2, 20, 3, 80, 100]
+[5, 10, 6, 2, 20, 3, 80, 100, 90] 
 ```
 
 This approach ensures that within each block, the middle value forms a peak, resulting in a wave-like pattern across the array.
